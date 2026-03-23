@@ -9,9 +9,11 @@ h2 {
 h1 {
     font-size: 20px;
 }
+
 h2 {
     font-size: 60px;
 }
+
 
 
 .card.team-header {
@@ -74,4 +76,40 @@ td img.team-logo {
 .lose {
     color: red;
     font-weight: 600;
+}
+
+
+@media (max-width: 768px) {
+
+    /* body { font-size: 16px; } */
+    .card-body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card.team-header #logo-wrapper {
+        width: 100px;
+    }
+
+    table {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Smoother scrolling on iOS */
+    }
+
+    #summary-bar {
+        justify-content: space-between;
+        border: none !important;
+
+        .col {
+            flex: 0 0 160px;
+            border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+            border-radius: 6px;
+            padding: 7px;
+        }
+    }
+    .form-group {
+    width: 100%;
+}
 }
