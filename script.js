@@ -85,7 +85,7 @@ function getSeasons() {
 
         seasons.push({
             year: yearInt,
-            display: yearInt + '-' + (yearInt - 1)
+            display: ((yearInt - 1)  + '-' + yearInt )
         });
     }
 
