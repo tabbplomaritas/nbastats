@@ -1,7 +1,6 @@
-const SEASON = 2026;
 const table = document.querySelector("table tbody");
 const submitBtn = document.getElementById("submit-form");
-
+const seasons = getSeasons();
 let allTeams = [];
 let totalGamesPlayed = 0;
 let selectedTeamTechGames = 0;
@@ -37,15 +36,18 @@ submitBtn.addEventListener("click", function (event) {
     resetData();
 
     const id = Number(document.getElementById("selected-team-id").value);
+    const selectedSeason = Number(document.getElementById("selected-season").value);
     const team = allTeams.find(team => team.id === id);
 
-    getTeamGames(team);
+    getTeamGames(team, selectedSeason);
 });
 
-function setSelectedTeam(id) {
-    const chosenTeam = dropdownData.find(team => team.id == id);
-    selectedTeam = chosenTeam;
-}
+// function setSelectedTeam(id) {
+//     const chosenTeam = dropdownData.find(team => team.id == id);
+//     selectedTeam = chosenTeam;
+// }
+
+
 
 function resetData() {
     const existingLogo = document.querySelector("#team-info .team-logo");
@@ -72,6 +74,22 @@ function resetData() {
         oppTechGames: 0,
         oppFlagGames: 0
     };
+}
+
+function getSeasons() {
+    const seasons = [];
+    const currentYear = 2026;
+
+    for (let i = 0; i <= 9; i++) {
+        let yearInt = currentYear - i;
+
+        seasons.push({
+            year: yearInt,
+            display: yearInt + '-' + (yearInt - 1)
+        });
+    }
+
+    return seasons;
 }
 
 function renderRows(rows) {
@@ -124,11 +142,11 @@ function initSorting() {
     updateSortIndicators();
 }
 
-async function getTeamGames(team) {
+async function getTeamGames(team, season) {
     setTeamHeader(team);
-
+    // to add season type: &seasontype=3
     const scheduleRes = await fetch(
-        `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${team.id}/schedule?season=${SEASON}`
+        `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${team.id}/schedule?season=${season}`
     );
     const scheduleData = await scheduleRes.json();
 
@@ -269,7 +287,7 @@ function insertStatSummaryData(team) {
     const oppFlagPercent = Math.round((stats.oppFlagGames / stats.totalGamesPlayed) * 100) + "%";
 
     const selectedTeamAbbrevEls = document.querySelectorAll(".selected-team-abbrev");
-    selectedTeamAbbrevEls.forEach((el) => {        
+    selectedTeamAbbrevEls.forEach((el) => {
         el.textContent = team.abbr;
     });
 
@@ -313,6 +331,7 @@ async function getNBATeamIds(allTeams) {
 async function init() {
     allTeams = await getNBATeamIds();
 
+    // generate teams dropdown
     const allTeamsSelect = document.getElementById("selected-team-id");
 
     allTeams.forEach(team => {
@@ -324,8 +343,20 @@ async function init() {
         allTeamsSelect.appendChild(teamOption);
     });
 
+    // generate season years dropdown
+    const seasonSelect = document.getElementById("selected-season");
+    seasons.forEach(season => {
+        const seasonOption = document.createElement("option");
+        seasonOption.value = season.year;
+        seasonOption.textContent = season.display;
+
+        seasonSelect.appendChild(seasonOption);
+    });
+
+
+
     initSorting();
-    getTeamGames(allTeams.find(team => team.id === 8));
+    getTeamGames(allTeams.find(team => team.id === 8), 2026);
 }
 
 init();
