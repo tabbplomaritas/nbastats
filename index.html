@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="/images/basketball.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>Useless NBA stats</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container py-5">
+        <h1 class="mb-4">🏀 Tabb's Random NBA Stats</h1>
+
+        <div class="team-header card text-center mb-4">
+            <div class="card-body" id="team-info">
+                <div id="logo-wrapper">
+
+                </div>
+                <div class="card-title animate__animated animate__backInRight">
+                    <h2 class="selected-team-name">--</h1>
+                        <h3>Techs & Flagrants</h3>
+                </div>
+            </div>
+        </div>
+        <form id="">
+            <div class="form-group me-4">
+                <label class="mb-2" for="select-team">Select Team</label>
+                <select name="select-team" class="form-control form-select" id="selected-team-id">
+                </select>
+            </div>
+            <button id="submit-form" type="submit" class="btn btn-primary">Go</button>
+        </form>
+        <!-- stat summary bar -->
+        <div class="container mb-4 mt-4">
+            <div class="row text-center g-2 border rounded py-3 bg-white" id="summary-bar">
+                <div class="col">
+                    <div class="fs-4 fw-semibold" id="selected-team-games-played">--</div>
+                    <div class="small">Games played to date</div>
+                </div>
+                <div class="col">
+                    <div class="fs-4 fw-semibold" id="selected-team-tech-games">--</div>
+                    <div class="">Games with 1+ <span class="selected-team-abbrev">--</span> Techs</div>
+                    <p class="small text-muted"><span id="tech-percent" class="percent">--</span> of Games Played</p>
+                </div>
+
+                <div class="col">
+                    <div class="fs-4 fw-semibold" id="selected-team-flagrant-games">--</div>
+                    <div>Games with 1+ <span class="selected-team-abbrev">--</span> Flagrants</div>
+                    <p class="small text-muted"><span id="flag-percent" class="percent">--</span> of Games Played</p>
+                </div>
+
+                <div class="col">
+                    <div class="fs-4 fw-semibold" id="opponent-tech-games">--</div>
+                    <div>Games with Opp 1+ Techs</div>
+                    <p class="small text-muted"><span id="opp-tech-percent" class="percent">--</span> of Games Played
+                    </p>
+                </div>
+
+                <div class="col">
+                    <div class="fs-4 fw-semibold" id="opponent-flagrant-games">--</div>
+                    <div>Games with Opp 1+ Flagrants</div>
+                    <p class="small text-muted"><span id="opp-flag-percent" class="percent">--</span> of Games Played
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped sortable">
+            <thead>
+                <tr>
+                    <th data-sort="dateObj">Date</th>
+                    <th data-sortable="true">Opponent</th>
+                    <th>Outcome</th>
+                    <th data-sort="teamGameTechs">Team Techs</th>
+                    <th data-sort="teamFlagrants">Team Flagrants</th>
+                    <th data-sort="oppTechs">Opp Techs</th>
+                    <th data-sort="oppFlagrants">Opp Flagrants</th>
+                </tr>
+            </thead>
+            <tbody id="games-table"></tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

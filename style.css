@@ -1,0 +1,77 @@
+body {
+    font-family: "Open Sans";
+}
+
+h2 {
+    font-family: "Alfa Slab One", sans-serif;
+}
+
+h1 {
+    font-size: 20px;
+}
+h2 {
+    font-size: 60px;
+}
+
+
+.card.team-header {
+    .card-title {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #logo-wrapper {
+        width: 200px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.form-group {
+    width: 300px;
+}
+
+
+#summary-bar {
+    img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+    }
+}
+
+
+.card-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+td img.team-logo {
+    width: 25px;
+    margin-right: 5px;
+}
+
+.win {
+    color: green;
+    font-weight: 600;
+}
+
+.lose {
+    color: red;
+    font-weight: 600;
+}
